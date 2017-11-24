@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="relacaoGraficoAnual"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="842"
+		 pageHeight="595"
+		 columnWidth="782"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="descricao" isForPrompting="true" class="java.lang.String"/>
+	<queryString language="xPath"><![CDATA[/list/conta]]></queryString>
+
+	<field name="idTipoConta" class="java.lang.String">
+		<fieldDescription><![CDATA[idTipoConta]]></fieldDescription>
+	</field>
+	<field name="tipoConta" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoConta]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.lang.String">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="perc" class="java.lang.String">
+		<fieldDescription><![CDATA[perc]]></fieldDescription>
+	</field>
+	<field name="mes" class="java.lang.String">
+		<fieldDescription><![CDATA[mes]]></fieldDescription>
+	</field>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="50"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="782"
+						height="27"
+						key="textField-1"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font fontName="Monospaced" pdfFontName="Courier" size="18" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Relação Gráfica de Contas"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="20"
+						width="782"
+						height="25"
+						key="textField-2"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="16"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$P{descricao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="479"  isSplitAllowed="true" >
+				<barChart>
+					<chart evaluationTime="Report"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="782"
+						height="479"
+						key="element-2"/>
+					<box></box>
+						<chartLegend textColor="#000000" backgroundColor="#FFFFFF" >
+					<font fontName="Monospaced" pdfFontName="Courier" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false" pdfEncoding="Cp1252"/>
+					</chartLegend>
+					</chart>
+					<categoryDataset>
+						<dataset >
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{tipoConta}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{mes}.equals("0")?"Jan" :
+ $F{mes}.equals("1")? "Fev" : 
+ $F{mes}.equals("2")? "Mar" :
+ $F{mes}.equals("3")? "Abr" :
+ $F{mes}.equals("4")? "Mai" :
+ $F{mes}.equals("5")? "Jun" :
+ $F{mes}.equals("6")? "Jul" :
+ $F{mes}.equals("7")? "Ago" :
+ $F{mes}.equals("8")? "Set" :
+ $F{mes}.equals("9")? "Out" :
+ $F{mes}.equals("10")? "Nov" :"Dez"]]></categoryExpression>
+							<valueExpression><![CDATA[new java.lang.Double($F{valor})]]></valueExpression>
+				<itemHyperlink >
+				</itemHyperlink>
+						</categorySeries>
+					</categoryDataset>
+					<barPlot >
+						<plot />
+						<categoryAxisFormat>
+							<axisFormat >
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat >
+								<labelFont>
+					<font fontName="Monospaced" pdfFontName="Courier" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false" pdfEncoding="Cp1252"/>
+								</labelFont>
+								<tickLabelFont>
+					<font fontName="Monospaced" pdfFontName="Courier" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false" pdfEncoding="Cp1252"/>
+								</tickLabelFont>
+							</axisFormat>
+						</valueAxisFormat>
+					</barPlot>
+				</barChart>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

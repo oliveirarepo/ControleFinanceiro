@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="relacaoGrafica"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="842"
+		 pageHeight="595"
+		 columnWidth="782"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="descricao" isForPrompting="true" class="java.lang.String"/>
+	<queryString language="xPath"><![CDATA[/list/conta]]></queryString>
+
+	<field name="idTipoConta" class="java.lang.String">
+		<fieldDescription><![CDATA[idTipoConta]]></fieldDescription>
+	</field>
+	<field name="tipoConta" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoConta]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.lang.String">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="perc" class="java.lang.String">
+		<fieldDescription><![CDATA[perc]]></fieldDescription>
+	</field>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="33"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="0"
+						y="3"
+						width="782"
+						height="26"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font fontName="Monospaced" size="18"/>
+					</textElement>
+				<text><![CDATA[Relação gráfica de Contas]]></text>
+				</staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="510"  isSplitAllowed="true" >
+				<pieChart>
+					<chart  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="27"
+						width="782"
+						height="451"
+						key="element-2"/>
+					<box></box>
+						<chartLegend textColor="#000000" backgroundColor="#FFFFFF" >
+					</chartLegend>
+					</chart>
+					<pieDataset>
+						<dataset >
+						</dataset>
+						<keyExpression><![CDATA[$F{idTipoConta}]]></keyExpression>
+						<valueExpression><![CDATA[new java.lang.Double($F{valor})]]></valueExpression>
+						<labelExpression><![CDATA[$F{tipoConta} +" " +
+new DecimalFormat("###,###,##0.00").format(Double.valueOf($F{valor})) + "("+
+new DecimalFormat("###,###,##0.00").format(Double.valueOf($F{perc}))+"%)"]]></labelExpression>
+				<sectionHyperlink >
+				</sectionHyperlink>
+					</pieDataset>
+					<piePlot 
+>
+						<plot />
+					</piePlot>
+				</pieChart>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="-2"
+						width="782"
+						height="25"
+						key="textField-1"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font fontName="Monospaced" pdfFontName="Helvetica-Bold" size="14" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$P{descricao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

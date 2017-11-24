@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="relacaoGraficaGastosMod2"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="842"
+		 pageHeight="595"
+		 columnWidth="782"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="dataInicial" isForPrompting="true" class="java.util.Date"/>
+	<parameter name="dataFinal" isForPrompting="true" class="java.util.Date"/>
+	<queryString><![CDATA[select * from movimentofinanceiro left join categoria on (movimentofinanceiro.id_categoria = categoria.id_categoria)
+where dataVenc between $P{dataInicial} and $P{dataFinal}]]></queryString>
+
+	<field name="CODIGO" class="java.lang.Integer"/>
+	<field name="DATAVENC" class="java.sql.Date"/>
+	<field name="CREEDOR" class="java.lang.String"/>
+	<field name="COD_OPERACAO" class="java.lang.String"/>
+	<field name="OPERACAO" class="java.lang.String"/>
+	<field name="DATACOMPRA" class="java.sql.Date"/>
+	<field name="VALORCOMPRA" class="java.lang.Double"/>
+	<field name="DESCONTO" class="java.lang.Double"/>
+	<field name="VALORPAGO" class="java.lang.Double"/>
+	<field name="JAPAGA" class="java.lang.String"/>
+	<field name="ID_CATEGORIA" class="java.lang.Integer"/>
+	<field name="IDTIPOCONTA" class="java.lang.Integer"/>
+	<field name="TIPOCONTA" class="java.lang.String"/>
+	<field name="DESCRICAO_CATEGORIA" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="50"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="50"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="30"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="254"  isSplitAllowed="true" >
+				<bar3DChart>
+					<chart  hyperlinkTarget="Self" >
+					<reportElement
+						x="17"
+						y="12"
+						width="757"
+						height="235"
+						key="element-1"/>
+					<box></box>
+						<chartLegend textColor="#000000" backgroundColor="#FFFFFF" >
+					</chartLegend>
+					</chart>
+					<categoryDataset>
+						<dataset >
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{DESCRICAO_CATEGORIA}]]></seriesExpression>
+							<categoryExpression><![CDATA[new java.lang.Integer($F{DATAVENC}.getMonth() +1)]]></categoryExpression>
+							<valueExpression><![CDATA[$F{VALORPAGO}]]></valueExpression>
+				<itemHyperlink >
+				</itemHyperlink>
+						</categorySeries>
+					</categoryDataset>
+					<bar3DPlot >
+						<plot />
+						<categoryAxisFormat>
+							<axisFormat >
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat >
+							</axisFormat>
+						</valueAxisFormat>
+					</bar3DPlot>
+				</bar3DChart>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="30"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="50"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="50"  isSplitAllowed="true" >
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="50"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

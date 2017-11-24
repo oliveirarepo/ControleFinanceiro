@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelacaoGraficaGastos" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="735cc264-ae08-4da1-8bcb-0b58af275938">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<queryString language="xPath">
+		<![CDATA[/list/ContaBean.ContasPagar]]>
+	</queryString>
+	<field name="descricaoCategoria" class="java.lang.String">
+		<fieldDescription><![CDATA[categoria/descricaoCategoria]]></fieldDescription>
+	</field>
+	<field name="VALORPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[VALORPAGO]]></fieldDescription>
+	</field>
+	<field name="DATAVENC" class="java.lang.String">
+		<fieldDescription><![CDATA[DATAVENC]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="14" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement uuid="68c4fb85-68b8-4594-a1c9-24edecc33858" key="textField" x="368" y="0" width="100" height="14"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataInicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement uuid="2cbdbd54-978c-46a2-8ad9-57be53135961" key="textField" x="499" y="0" width="100" height="14"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataFinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a00da607-3a60-4ee8-b4fb-ac9ff70ce2ee" key="staticText-1" x="335" y="0" width="80" height="14"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[De]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="28157410-d598-484d-9f77-42bda275b93e" key="staticText-2" x="461" y="0" width="80" height="14"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Até]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="531" splitType="Stretch">
+			<lineChart>
+				<chart>
+					<reportElement uuid="ca424e0c-7970-46b9-9c16-b56d9ede200e" key="element-3" x="10" y="0" width="759" height="516"/>
+					<chartTitle/>
+					<chartSubtitle color="#000000">
+						<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<subtitleExpression><![CDATA["Relação Grafica de Gastos"]]></subtitleExpression>
+					</chartSubtitle>
+					<chartLegend textColor="#000000" backgroundColor="#FFFFFF">
+						<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{descricaoCategoria}]]></seriesExpression>
+						<categoryExpression><![CDATA[new java.lang.Integer($F{DATAVENC}.getMonth() +1)]]></categoryExpression>
+						<valueExpression><![CDATA[$F{VALORPAGO}]]></valueExpression>
+						<labelExpression><![CDATA["Expressao"]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["Valor"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

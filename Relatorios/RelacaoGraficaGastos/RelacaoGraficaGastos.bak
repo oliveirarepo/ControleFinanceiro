@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="RelacaoGraficaGastos"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="842"
+		 pageHeight="595"
+		 columnWidth="782"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="dataInicial" isForPrompting="true" class="java.util.Date"/>
+	<parameter name="dataFinal" isForPrompting="true" class="java.util.Date"/>
+	<queryString><![CDATA[select * from MOVIMENTOFINANCEIRO
+left join CATEGORIA on (MovimentoFinanceiro.id_categoria = categoria.id_categoria)
+where movimentofinanceiro.dataVenc between $P{dataInicial} and $P{dataFinal} order by dataVenc]]></queryString>
+
+	<field name="CODIGO" class="java.lang.Integer"/>
+	<field name="DATAVENC" class="java.sql.Date"/>
+	<field name="CREEDOR" class="java.lang.String"/>
+	<field name="COD_OPERACAO" class="java.lang.String"/>
+	<field name="OPERACAO" class="java.lang.String"/>
+	<field name="DATACOMPRA" class="java.sql.Date"/>
+	<field name="VALORCOMPRA" class="java.lang.Double"/>
+	<field name="DESCONTO" class="java.lang.Double"/>
+	<field name="VALORPAGO" class="java.lang.Double"/>
+	<field name="JAPAGA" class="java.lang.String"/>
+	<field name="ID_CATEGORIA" class="java.lang.Integer"/>
+	<field name="IDTIPOCONTA" class="java.lang.Integer"/>
+	<field name="TIPOCONTA" class="java.lang.String"/>
+	<field name="DESCRICAO_CATEGORIA" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="14"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="368"
+						y="0"
+						width="100"
+						height="14"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$P{dataInicial}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="499"
+						y="0"
+						width="100"
+						height="14"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$P{dataFinal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="335"
+						y="0"
+						width="80"
+						height="14"
+						key="staticText-1"/>
+					<box></box>
+					<textElement>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[De]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="461"
+						y="0"
+						width="80"
+						height="14"
+						key="staticText-2"/>
+					<box></box>
+					<textElement>
+						<font fontName="Times New Roman" pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Até]]></text>
+				</staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="531"  isSplitAllowed="true" >
+				<lineChart>
+					<chart  hyperlinkTarget="Self" >
+					<reportElement
+						x="10"
+						y="0"
+						width="759"
+						height="516"
+						key="element-3"/>
+					<box></box>
+						<chartSubtitle color="#000000" >
+					<font fontName="Arial" pdfFontName="Helvetica" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false" pdfEncoding="Cp1252"/>
+								<subtitleExpression><![CDATA["Relação Grafica de Gastos"]]></subtitleExpression>
+					</chartSubtitle>
+						<chartLegend textColor="#000000" backgroundColor="#FFFFFF" >
+					<font fontName="Arial" pdfFontName="Helvetica" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false" pdfEncoding="Cp1252"/>
+					</chartLegend>
+					</chart>
+					<categoryDataset>
+						<dataset >
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[""+$F{DESCRICAO_CATEGORIA}]]></seriesExpression>
+							<categoryExpression><![CDATA[new java.lang.Integer($F{DATAVENC}.getMonth() +1)]]></categoryExpression>
+							<valueExpression><![CDATA[$F{VALORPAGO}]]></valueExpression>
+							<labelExpression><![CDATA["Expressao"]]></labelExpression>
+				<itemHyperlink >
+				</itemHyperlink>
+						</categorySeries>
+					</categoryDataset>
+					<linePlot >
+						<plot />
+						<categoryAxisFormat>
+							<axisFormat >
+							</axisFormat>
+						</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["Valor"]]></valueAxisLabelExpression>
+						<valueAxisFormat>
+							<axisFormat >
+							</axisFormat>
+						</valueAxisFormat>
+					</linePlot>
+				</lineChart>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

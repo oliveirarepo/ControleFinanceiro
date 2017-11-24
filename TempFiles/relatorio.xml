@@ -1,0 +1,51 @@
+<list>
+  <conta>
+    <idTipoConta>8</idTipoConta>
+    <tipoConta>PAGAMENTO</tipoConta>
+    <valor>118.0</valor>
+    <perc>1.2509341993413423</perc>
+    <mes>0</mes>
+  </conta>
+  <conta>
+    <idTipoConta>4</idTipoConta>
+    <tipoConta>COMPRA A PRAZO</tipoConta>
+    <valor>600.0</valor>
+    <perc>6.360682369532249</perc>
+    <mes>0</mes>
+  </conta>
+  <conta>
+    <idTipoConta>2</idTipoConta>
+    <tipoConta>BOLETO</tipoConta>
+    <valor>955.0</valor>
+    <perc>10.12408610483883</perc>
+    <mes>0</mes>
+  </conta>
+  <conta>
+    <idTipoConta>7</idTipoConta>
+    <tipoConta>COMISSÃO</tipoConta>
+    <valor>1363.0</valor>
+    <perc>14.449350116120756</perc>
+    <mes>0</mes>
+  </conta>
+  <conta>
+    <idTipoConta>12</idTipoConta>
+    <tipoConta>OUTROS</tipoConta>
+    <valor>1874.0</valor>
+    <perc>19.866531267505724</perc>
+    <mes>0</mes>
+  </conta>
+  <conta>
+    <idTipoConta>9</idTipoConta>
+    <tipoConta>CARTAO SANTANDER</tipoConta>
+    <valor>2072.950008392334</valor>
+    <perc>21.975627618838075</perc>
+    <mes>0</mes>
+  </conta>
+  <conta>
+    <idTipoConta>5</idTipoConta>
+    <tipoConta>SALARIO</tipoConta>
+    <valor>2450.0</valor>
+    <perc>25.972786342256683</perc>
+    <mes>0</mes>
+  </conta>
+</list>
